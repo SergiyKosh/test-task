@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        Intent intent = new Intent(this, CategoriesActivity.class);
-        startActivity(intent);
+        new CategoryService(this).getAllCategories();
 
     }
 }

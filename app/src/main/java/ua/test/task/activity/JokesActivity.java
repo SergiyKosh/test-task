@@ -37,6 +37,11 @@ public class JokesActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         setJokes();
     }
 
@@ -46,13 +51,15 @@ public class JokesActivity extends AppCompatActivity {
     }
 
     private void getJokes() throws InterruptedException {
+        Thread.sleep(500);
         new Thread(() -> {
             jokes = new JokeService(this, category).getRandomJokes(15);
-            adapter = new JokesAdapter(Optional.ofNullable(jokes).orElse(new ArrayList<>()));
+            adapter = new JokesAdapter(jokes);
         }).start();
         Thread.sleep(500);
     }
-    private void setJokes() {
+
+    private synchronized void setJokes() {
         jokesRV.setHasFixedSize(true);
         jokesRV.setLayoutManager(new LinearLayoutManager(this));
         jokesRV.setAdapter(adapter);

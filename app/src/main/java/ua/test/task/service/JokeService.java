@@ -21,7 +21,7 @@ public class JokeService {
         this.jokes = new ArrayList<>();
     }
 
-    public List<Joke> getRandomJokes(int count) {
+    public synchronized List<Joke> getRandomJokes(int count) {
         Api api = Props.getRetrofit().create(Api.class);
         int i = 0;
         while (i < count) {

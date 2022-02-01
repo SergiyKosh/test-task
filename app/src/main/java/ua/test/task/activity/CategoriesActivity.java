@@ -23,29 +23,17 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         init();
-        try {
-            getCategories();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        getCategories();
         setCategories();
-
     }
 
     private void init() {
         categoriesRV = findViewById(R.id.categoriesRV);
     }
 
-    private void getCategories() throws InterruptedException {
-        new Thread(() -> {
-            try {
-                items = new CategoryService().getAllCategories();
-                adapter = new CategoriesAdapter(items, this);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }).start();
-        Thread.sleep(500);
+    private void getCategories() {
+        items = getIntent().getStringArrayListExtra("categories");
+        adapter = new CategoriesAdapter(items, this);
     }
 
     private synchronized void setCategories() {
