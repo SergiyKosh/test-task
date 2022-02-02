@@ -37,6 +37,8 @@ public class WebViewActivity extends AppCompatActivity {
 
                 if (newProgress == 100) {
                     progressBar.setVisibility(View.INVISIBLE);
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
                 }
             }
         });
