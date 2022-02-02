@@ -1,7 +1,3 @@
-//plugins {
-//    id 'com.android.application'
-//}
-
 plugins {
     id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
     id 'com.android.application'
