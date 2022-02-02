@@ -24,13 +24,13 @@ public class JokesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new RecyclerView.ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.one_category_view, parent, false)
+                        .inflate(R.layout.one_joke_view, parent, false)
         ) {};
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TextView jokeText = holder.itemView.findViewById(R.id.jokeText);
+        TextView jokeText = holder.itemView.findViewById(R.id.jokeValue);
         jokeText.setText(jokes.get(position).getValue());
     }
 

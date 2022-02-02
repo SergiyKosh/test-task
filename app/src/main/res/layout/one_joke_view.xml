@@ -22,10 +22,9 @@
                 android:src="@android:drawable/ic_menu_gallery" />
 
             <TextView
-                android:id="@+id/jokeText"
+                android:id="@+id/jokeValue"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:text="value" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

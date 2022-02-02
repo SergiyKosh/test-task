@@ -13,6 +13,7 @@ import java.util.List;
 
 import ua.test.task.R;
 import ua.test.task.activity.JokesActivity;
+import ua.test.task.service.JokeService;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<String> categories;
@@ -38,9 +39,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         categoryName.setText(categories.get(position));
 
         categoryName.setOnClickListener(click -> {
-            Intent intent = new Intent(context, JokesActivity.class);
-            intent.putExtra("category", categoryName.getText().toString());
-            context.startActivity(intent);
+            new JokeService(context, categories.get(position)).getRandomJokes(15);
         });
     }
 

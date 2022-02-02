@@ -6,25 +6,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.annimon.stream.Optional;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ua.test.task.R;
 import ua.test.task.adapter.JokesAdapter;
 import ua.test.task.model.Joke;
-import ua.test.task.service.JokeService;
 
 public class JokesActivity extends AppCompatActivity {
     private List<Joke> jokes;
     private RecyclerView jokesRV;
-    private RecyclerView.Adapter adapter;
+    private RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
     private String category;
-
-//    public JokesActivity(String category) {
-//        this.category = category;
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +28,7 @@ public class JokesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jokes);
 
         init();
-        try {
-            getJokes();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        getJokes();
         setJokes();
     }
 
@@ -50,16 +37,13 @@ public class JokesActivity extends AppCompatActivity {
         category = getIntent().getStringExtra("category");
     }
 
-    private void getJokes() throws InterruptedException {
-        Thread.sleep(500);
-        new Thread(() -> {
-            jokes = new JokeService(this, category).getRandomJokes(15);
-            adapter = new JokesAdapter(jokes);
-        }).start();
-        Thread.sleep(500);
+    private void getJokes() {
+        jokes = new Gson().fromJson(getIntent().getStringExtra("jokes"), new TypeToken<List<Joke>>() {
+        }.getType());
+        adapter = new JokesAdapter(jokes);
     }
 
-    private synchronized void setJokes() {
+    private void setJokes() {
         jokesRV.setHasFixedSize(true);
         jokesRV.setLayoutManager(new LinearLayoutManager(this));
         jokesRV.setAdapter(adapter);
