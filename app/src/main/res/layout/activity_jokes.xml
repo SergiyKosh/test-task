@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    android:orientation="vertical"
+    tools:context=".activity.JokesActivity">
 
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/jokesRV"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="200dp" />
+        android:layout_height="match_parent" />
+
 </LinearLayout>
