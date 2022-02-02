@@ -25,17 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String dtStart = "2020-01-05 13:42:26.766831";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
-        try {
-            TextView dateTV = findViewById(R.id.date);
-            Date date = format.parse(dtStart);
-            dateTV.setText(date.toString());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        new CategoryService(this).getAllCategories();
-
+//        new CategoryService(this).getAllCategories();
+        Intent intent = new Intent(this, WebViewActivity.class);
+        startActivity(intent);
     }
 }

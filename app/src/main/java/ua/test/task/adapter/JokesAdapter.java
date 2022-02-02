@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Exchanger;
-import java.util.concurrent.atomic.AtomicReference;
 
 import ua.test.task.R;
 import ua.test.task.model.Joke;
@@ -94,7 +93,9 @@ public class JokesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         new Thread(() -> {
             try {
-                exchanger.exchange(BitmapFactory.decodeStream(new URL(jokes.get(position).getIconUrl()).openConnection().getInputStream()));
+                exchanger.exchange(BitmapFactory.decodeStream(
+                        new URL(jokes.get(position).getIconUrl()).openConnection().getInputStream())
+                );
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
