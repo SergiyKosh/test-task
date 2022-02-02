@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -38,8 +39,9 @@ public class JokesActivity extends AppCompatActivity {
     }
 
     private void getJokes() {
-        jokes = new Gson().fromJson(getIntent().getStringExtra("jokes"), new TypeToken<List<Joke>>() {
-        }.getType());
+        jokes = new Gson().fromJson(getIntent().getStringExtra("jokes"),
+                new TypeToken<List<Joke>>() {
+                }.getType());
         adapter = new JokesAdapter(jokes);
     }
 
