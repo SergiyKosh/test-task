@@ -6,12 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
 import java.util.List;
 
 import ua.test.task.R;
 import ua.test.task.adapter.CategoriesAdapter;
-import ua.test.task.service.CategoryService;
 
 public class CategoriesActivity extends AppCompatActivity {
     private RecyclerView categoriesRV;

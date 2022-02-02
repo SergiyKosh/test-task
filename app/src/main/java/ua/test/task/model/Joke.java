@@ -1,11 +1,7 @@
 package ua.test.task.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -39,24 +35,12 @@ public class Joke {
         return categories;
     }
 
-    public void setCategories(String[] categories) {
-        this.categories = categories;
-    }
-
     public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public String getIconUrl() {
         return iconUrl;
-    }
-
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
     }
 
     public String getId() {
@@ -71,24 +55,12 @@ public class Joke {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 
     @Override
@@ -104,18 +76,5 @@ public class Joke {
         int result = Objects.hash(createdAt, iconUrl, id, updatedAt, url, value);
         result = 31 * result + Arrays.hashCode(categories);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Joke{" +
-                "categories=" + Arrays.toString(categories) +
-                ", createdAt='" + createdAt + '\'' +
-                ", iconUrl='" + iconUrl + '\'' +
-                ", id='" + id + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
-                ", url='" + url + '\'' +
-                ", value='" + value + '\'' +
-                '}';
     }
 }

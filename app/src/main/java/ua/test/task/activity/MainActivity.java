@@ -1,18 +1,12 @@
 package ua.test.task.activity;
 
-import static com.annimon.stream.Optional.ofNullable;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.annimon.stream.Optional;
 import com.onesignal.OneSignal;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import ua.test.task.R;
 import ua.test.task.service.CategoryService;

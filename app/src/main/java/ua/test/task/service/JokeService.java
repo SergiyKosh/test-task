@@ -2,14 +2,16 @@ package ua.test.task.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
+import android.os.Build;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,27 +32,11 @@ public class JokeService {
         this.jokes = new ArrayList<>();
     }
 
-//    public void getRandomJokes(int count) {
-//        Api api = Props.getRetrofit().create(Api.class);
-//        new Thread(() -> {
-//            for (int i = 0; i < count; i++) {
-//                try {
-//                    jokes.add(api.getRandomJoke(category).execute().body());
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            }
-//        }).start();
-//    }
-//
-//    public List<Joke> getJokes() {
-//        return jokes;
-//    }
-
     public void getRandomJokes(int count) {
         Api api = Props.getRetrofit().create(Api.class);
         Call<Joke> call;
         ArrayList<Joke> jokes = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             call = api.getRandomJoke(category);
             call.enqueue(new Callback<Joke>() {
@@ -67,14 +53,13 @@ public class JokeService {
                     }
                 }
 
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onFailure(Call<Joke> call, Throwable t) {
-                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, Optional.ofNullable(t.getMessage())
+                            .orElse("Request failed"), Toast.LENGTH_LONG).show();
                 }
             });
-
-
-
         }
     }
 }

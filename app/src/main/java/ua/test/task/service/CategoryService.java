@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import com.annimon.stream.Optional;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class CategoryService {
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
                 Toast.makeText(context, Optional.ofNullable(t.getMessage())
-                                .orElse("Request was failed"), Toast.LENGTH_LONG).show();
+                        .orElse("Request was failed"), Toast.LENGTH_LONG).show();
             }
         });
     }
